@@ -2,7 +2,11 @@ type _ t
 
 val merge_tups : 'a t -> 'b t -> ('a * 'b) t
 val conv : ('a -> 'b) -> ('b -> 'a) -> 'b t -> 'a t
+
 val length : _ t -> int
+val width : _ t -> int
+val dim : _ t -> int * int
+
 val row : 'a t -> int -> 'a
 val map : ('a -> 'b) -> 'a t -> 'b list
 val rev_map : ('a -> 'b) -> 'a t -> 'b list
@@ -14,6 +18,7 @@ val rev_iter : ('a -> unit) -> 'a t -> unit
 val rev_iteri : (int -> 'a -> unit) -> 'a t -> unit
 val fold_left : ('b -> 'a -> 'b) -> 'b -> 'a t -> 'b
 val fold_right : ('a -> 'b -> 'b) -> 'a t -> 'b -> 'b
+val to_list : 'a t -> 'a list
 
 module type C = sig
   type 'a c

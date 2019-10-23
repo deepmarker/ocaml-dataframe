@@ -6,10 +6,17 @@ type _ t =
 let merge_tups a b = Cols (a, b)
 let conv ffrom fto v = Conv (ffrom, fto, v)
 
+let rec width : type a. a t -> int = function
+  | Col _ -> 1
+  | Cols (a, b) -> width a + width b
+  | Conv (_, _, a) -> width a
+
 let rec length : type a. a t -> int = function
   | Col a -> Array.length a
   | Cols (a, _) -> length a
   | Conv (_, _, a) -> length a
+
+let dim a = length a, width a
 
 let rec row : type a. a t -> int -> a = fun t n ->
   match t with
@@ -58,6 +65,8 @@ let rev_mapi : type a. (int -> a -> 'b) -> a t -> 'b list = fun f t ->
 let mapi : type a. (int -> a -> 'b) -> a t -> 'b list = fun f t ->
   let _, r = fold_right (fun v (i, a) -> pred i, f i v :: a) t (pred (length t), []) in
   r
+
+let to_list t = fold_right (fun e a -> e :: a) t []
 
 module type C = sig
   type 'a c
