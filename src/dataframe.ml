@@ -28,6 +28,17 @@ let iter : type a. (a -> 'b) -> a t -> unit = fun f t ->
   let n = length t in
   for i = 0 to n - 1 do f (row t i) done
 
+let to_seq t =
+  let n = length t in
+  let current_row = ref 0 in
+  let rec inner () =
+    if !current_row = n then Seq.Nil
+    else
+      let r = row t !current_row in
+      incr current_row ;
+      Cons (r, inner) in
+  inner
+
 let iteri : type a. (int -> a -> 'b) -> a t -> unit = fun f t ->
   let n = length t in
   for i = 0 to n - 1 do f i (row t i) done

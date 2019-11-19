@@ -19,6 +19,7 @@ val rev_iteri : (int -> 'a -> unit) -> 'a t -> unit
 val fold_left : ('b -> 'a -> 'b) -> 'b -> 'a t -> 'b
 val fold_right : ('a -> 'b -> 'b) -> 'a t -> 'b -> 'b
 val to_list : 'a t -> 'a list
+val to_seq : 'a t -> 'a Seq.t
 
 module type C = sig
   type 'a c
