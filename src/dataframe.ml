@@ -78,6 +78,7 @@ let mapi : type a. (int -> a -> 'b) -> a t -> 'b list = fun f t ->
   r
 
 let to_list t = fold_right (fun e a -> e :: a) t []
+let to_array t = Array.of_seq (to_seq t)
 
 module type C = sig
   type 'a c
