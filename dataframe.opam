@@ -1,0 +1,20 @@
+opam-version: "2.0"
+maintainer: "Vincent Bernardoff <vb@luminar.eu.org>"
+authors: "Vincent Bernardoff <vb@luminar.eu.org>"
+homepage: "https://github.com/vbmithr/ocaml-dataframe"
+license: "ISC"
+dev-repo: "git+https://github.com/vbmithr/ocaml-dataframe.git"
+bug-reports: "https://github.com/vbmithr/ocaml-dataframe/issues"
+doc: "https://vbmithr.github.io/ocaml-dataframe/doc"
+tags: ["pandas" "timeseries" "table"]
+depends: [
+  "dune" {>= "1.11.4"}
+  "ocaml" {>= "4.08.0"}
+]
+build:[ "dune" "build" "-p" name "-j" jobs ]
+synopsis: "Library providing a row API from a column list structure"
+description: """
+"""
+url {
+  src: "git+https://github.com/vbmithr/ocaml-dataframe"
+}
